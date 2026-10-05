@@ -425,7 +425,7 @@ function makeLiveVideo(input) {
   applyModuleColors(section, block);
   const content = document.createElement('div');
   content.className = 'live-video-inner';
-  addEyebrow(content, 'FROM INSIDE THE LOUNGE', true);
+  addEyebrow(content, 'FROM OUR ROOFTOP', true);
   const title = document.createElement('h2');
   title.textContent = block.title || DEFAULT_LIVE_VIDEO.title;
   content.append(title);
