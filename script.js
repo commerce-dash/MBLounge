@@ -358,6 +358,22 @@ function makeSection(className, id) {
   return section;
 }
 
+function applyModuleColors(section, block) {
+  if (!section || !block) return section;
+  const background = typeof block.backgroundColor === 'string' ? block.backgroundColor.trim() : '';
+  const foreground = typeof block.fontColor === 'string' ? block.fontColor.trim() : '';
+  if (background && CSS.supports('color', background)) {
+    section.style.setProperty('--cms-module-background', background);
+    section.style.backgroundColor = background;
+  }
+  if (foreground && CSS.supports('color', foreground)) {
+    section.style.setProperty('--cms-module-color', foreground);
+    section.style.color = foreground;
+    section.querySelectorAll('*').forEach((child) => child.style.setProperty('color', foreground, 'important'));
+  }
+  return section;
+}
+
 function addEyebrow(parent, value, dark = false) {
   if (!value) return;
   const eyebrow = document.createElement('p');
@@ -398,6 +414,7 @@ function makeLiveVideo(input) {
   const src = safeEmbedUrl(block.provider || 'rtsp-me', block.embedUrl || DEFAULT_LIVE_VIDEO.embedUrl);
   if (!src) return null;
   const section = makeSection('live-video-section', 'live-feed');
+  applyModuleColors(section, block);
   const content = document.createElement('div');
   content.className = 'live-video-inner';
   addEyebrow(content, 'FROM INSIDE THE LOUNGE', true);
@@ -432,6 +449,7 @@ function makePromo(input) {
   const block = recordValue(input);
   if (block.enabled === false) return null;
   const section = makeSection('cms-promo-section');
+  applyModuleColors(section, block);
   const image = assetUrl(block.image);
   if (image) section.style.setProperty('--promo-image', `url("${image.replace(/["\\]/g, '')}")`);
   const inner = document.createElement('div');
@@ -453,6 +471,7 @@ function makePromo(input) {
 function makeRichText(input) {
   const block = recordValue(input);
   const section = makeSection('cms-rich-section');
+  applyModuleColors(section, block);
   const inner = document.createElement('div');
   inner.className = 'cms-rich-inner';
   addEyebrow(inner, block.eyebrow, true);
@@ -474,6 +493,7 @@ function makeRichText(input) {
 function makeGallery(input) {
   const block = recordValue(input);
   const section = makeSection('cms-gallery-section');
+  applyModuleColors(section, block);
   const inner = document.createElement('div');
   inner.className = 'cms-gallery-inner';
   addEyebrow(inner, block.eyebrow, true);
@@ -501,6 +521,7 @@ function makeGallery(input) {
 function makeLogoGrid(input) {
   const block = recordValue(input);
   const section = makeSection('cms-logo-section');
+  applyModuleColors(section, block);
   const inner = document.createElement('div');
   inner.className = 'cms-logo-inner';
   addEyebrow(inner, block.eyebrow, true);
@@ -535,6 +556,7 @@ function makeLogoTicker(input) {
   const logos = (block.logos || []).map(recordValue).filter((entry) => assetUrl(entry.logo));
   if (!logos.length) return null;
   const section = makeSection('cms-logo-ticker-section');
+  applyModuleColors(section, block);
   const inner = document.createElement('div');
   inner.className = 'cms-logo-ticker-inner';
   if (block.heading) {
@@ -652,12 +674,12 @@ function generatedBlock(block, events) {
     'logo-grid': 'sections.logo-grid', 'logo-ticker': 'sections.logo-ticker',
   };
   const resolved = aliases[type] || type;
-  if (resolved === 'sections.live-video') return makeLiveVideo(block);
-  if (resolved === 'sections.promo-banner') return makePromo(block);
-  if (resolved === 'sections.rich-text') return makeRichText(block);
-  if (resolved === 'sections.photo-gallery') return makeGallery(block);
-  if (resolved === 'sections.logo-grid') return makeLogoGrid(block);
-  if (resolved === 'sections.logo-ticker') return makeLogoTicker(block);
+  if (resolved === 'sections.live-video') return applyModuleColors(makeLiveVideo(block), block);
+  if (resolved === 'sections.promo-banner') return applyModuleColors(makePromo(block), block);
+  if (resolved === 'sections.rich-text') return applyModuleColors(makeRichText(block), block);
+  if (resolved === 'sections.photo-gallery') return applyModuleColors(makeGallery(block), block);
+  if (resolved === 'sections.logo-grid') return applyModuleColors(makeLogoGrid(block), block);
+  if (resolved === 'sections.logo-ticker') return applyModuleColors(makeLogoTicker(block), block);
   if (resolved === 'sections.event-list') updateEventCards(events, block);
   if (resolved === 'sections.hero') applyHero(block);
   if (resolved === 'sections.story') applyStory(block);
@@ -670,7 +692,8 @@ function generatedBlock(block, events) {
     'sections.private-events': '#private-events',
     'sections.community': '#community',
   };
-  return selectors[resolved] ? document.querySelector(selectors[resolved]) : null;
+  const section = selectors[resolved] ? document.querySelector(selectors[resolved]) : null;
+  return applyModuleColors(section, block);
 }
 
 function applyHomepage(input, events) {

@@ -7,6 +7,7 @@ body { margin: 0; color: #211a1d; font-family: 'DM Sans', Arial, sans-serif; -we
 .mbl-preview h1,.mbl-preview h2,.mbl-preview h3,.mbl-preview strong { font-family:var(--preview-heading-font); }
 .mbl-preview [data-key-path] { cursor:pointer; transition:outline-color .15s, background-color .15s; }
 .mbl-preview [data-key-path]:hover { outline:1px dashed #e47ea6; outline-offset:3px; }
+.mbl-preview section[style*="--preview-module-color"],.mbl-preview section[style*="--preview-module-color"] * { color:var(--preview-module-color)!important; }
 .preview-announcement { min-height:29px; padding:7px 14px; color:#e6dce0; background:#171315; text-align:center; font-size:8px; letter-spacing:.14em; text-transform:uppercase; }
 .preview-header { min-height:65px; display:flex; align-items:center; justify-content:space-between; gap:20px; padding:10px 6%; color:#fff; background:var(--preview-ink); border-bottom:1px solid #ffffff18; }
 .preview-brand-logo { width:108px; height:46px; object-fit:contain; object-position:left center; }

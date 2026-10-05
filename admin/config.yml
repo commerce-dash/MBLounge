@@ -149,6 +149,7 @@ collections:
                   - name: hero
                     label: Hero
                     fields:
+                      - { name: fontColor, label: Font color override, widget: color, required: false }
                       - { name: eyebrow, label: Eyebrow, widget: string }
                       - { name: heading, label: Heading, widget: string }
                       - { name: accentHeading, label: Accent line, widget: string }
@@ -172,6 +173,7 @@ collections:
                   - name: event-list
                     label: Event listing
                     fields:
+                      - { name: fontColor, label: Font color override, widget: color, required: false }
                       - { name: eyebrow, label: Eyebrow, widget: string }
                       - { name: heading, label: Heading, widget: string }
                       - { name: accentHeading, label: Accent line, widget: string }
@@ -182,6 +184,7 @@ collections:
                   - name: story
                     label: Our story
                     fields:
+                      - { name: fontColor, label: Font color override, widget: color, required: false }
                       - { name: eyebrow, label: Eyebrow, widget: string }
                       - { name: heading, label: Heading, widget: string }
                       - { name: accentHeading, label: Accent line, widget: string }
@@ -194,6 +197,7 @@ collections:
                   - name: private-events
                     label: Private events
                     fields:
+                      - { name: fontColor, label: Font color override, widget: color, required: false }
                       - { name: eyebrow, label: Eyebrow, widget: string }
                       - { name: heading, label: Heading, widget: string }
                       - { name: accentHeading, label: Accent line, widget: string }
@@ -208,6 +212,7 @@ collections:
                   - name: community
                     label: Community
                     fields:
+                      - { name: fontColor, label: Font color override, widget: color, required: false }
                       - { name: eyebrow, label: Eyebrow, widget: string }
                       - { name: heading, label: Heading, widget: string }
                       - { name: accentHeading, label: Accent line, widget: string }
@@ -220,6 +225,7 @@ collections:
                   - name: live-video
                     label: Live video feed
                     fields:
+                      - { name: fontColor, label: Font color override, widget: color, required: false }
                       - { name: enabled, label: Show live feed, widget: boolean }
                       - { name: title, label: Section title, widget: string }
                       - { name: caption, label: Description, widget: string }
@@ -231,6 +237,7 @@ collections:
                   - name: promo-banner
                     label: Marketing banner
                     fields:
+                      - { name: fontColor, label: Font color override, widget: color, required: false }
                       - { name: enabled, label: Show banner, widget: boolean }
                       - { name: eyebrow, label: Eyebrow, widget: string }
                       - { name: heading, label: Heading, widget: string }
@@ -244,6 +251,7 @@ collections:
                   - name: rich-text
                     label: Text section
                     fields:
+                      - { name: fontColor, label: Font color override, widget: color, required: false }
                       - { name: eyebrow, label: Eyebrow, widget: string, required: false }
                       - { name: heading, label: Heading, widget: string, required: false }
                       - { name: body, label: Text, widget: text }
@@ -251,6 +259,7 @@ collections:
                   - name: photo-gallery
                     label: Photo gallery
                     fields:
+                      - { name: fontColor, label: Font color override, widget: color, required: false }
                       - { name: eyebrow, label: Eyebrow, widget: string, required: false }
                       - { name: heading, label: Heading, widget: string, required: false }
                       - name: images
@@ -261,6 +270,7 @@ collections:
                   - name: logo-grid
                     label: Community logos (grid)
                     fields:
+                      - { name: fontColor, label: Font color override, widget: color, required: false }
                       - { name: eyebrow, label: Eyebrow, widget: string, required: false }
                       - { name: heading, label: Heading, widget: string }
                       - name: logos
@@ -271,6 +281,7 @@ collections:
                   - name: logo-ticker
                     label: Scrolling logo ticker
                     fields:
+                      - { name: fontColor, label: Font color override, widget: color, required: false }
                       - { name: enabled, label: Show ticker, widget: boolean }
                       - { name: heading, label: Accessible section label, widget: string }
                       - name: logos

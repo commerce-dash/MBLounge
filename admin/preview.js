@@ -3,7 +3,7 @@
   if (!window.CMS || !window.createClass || !window.h) return;
 
   var h = window.h;
-  var previewCSS = '/MBLounge/admin/preview.css?v=2';
+  var previewCSS = '/MBLounge/admin/preview.css?v=3';
   window.CMS.registerPreviewStyle(previewCSS);
 
   function val(value, fallback) {
@@ -19,6 +19,10 @@
     if (block.backgroundColor) {
       result.backgroundColor = block.backgroundColor;
       result['--preview-module-background'] = block.backgroundColor;
+    }
+    if (block.fontColor) {
+      result.color = block.fontColor;
+      result['--preview-module-color'] = block.fontColor;
     }
     return result;
   }
