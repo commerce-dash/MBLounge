@@ -108,6 +108,7 @@
     "sections": [
       {
         "type": "hero",
+        "fontColor": "",
         "eyebrow": "A Worcester original since 1971",
         "heading": "Your night.",
         "accentHeading": "Your people.",
@@ -145,6 +146,7 @@
       },
       {
         "type": "event-list",
+        "fontColor": "",
         "eyebrow": "Save yourself a spot on the dance floor",
         "heading": "Coming up",
         "accentHeading": "at the Lounge.",
@@ -155,6 +157,7 @@
       },
       {
         "type": "live-video",
+        "fontColor": "",
         "backgroundColor": "",
         "enabled": true,
         "title": "Live from the Lounge",
@@ -166,6 +169,7 @@
       },
       {
         "type": "story",
+        "fontColor": "",
         "eyebrow": "A little history, a lot of heart",
         "heading": "Worcester’s",
         "accentHeading": "living room.",
@@ -178,6 +182,7 @@
       },
       {
         "type": "private-events",
+        "fontColor": "",
         "eyebrow": "Make the night yours",
         "heading": "A room for",
         "accentHeading": "your kind of party.",
@@ -192,6 +197,7 @@
       },
       {
         "type": "community",
+        "fontColor": "",
         "eyebrow": "Good neighbors know good neighbors",
         "heading": "Local love,",
         "accentHeading": "right around the corner.",
@@ -204,8 +210,9 @@
       },
       {
         "type": "logo-ticker",
+        "fontColor": "",
         "heading": "MB Lounge community partners",
-        "backgroundColor": "",
+        "backgroundColor": "#000000",
         "enabled": true,
         "logos": [
           {
