@@ -1,0 +1,121 @@
+{
+  "siteName": "The MB Lounge",
+  "brand": {
+    "logo": "",
+    "primaryColor": "#211a1d",
+    "accentColor": "#ef8ab3",
+    "highlightColor": "#ef9bbd",
+    "surfaceColor": "#f6f1eb",
+    "textColor": "#211a1d"
+  },
+  "typography": {
+    "headingFont": "Playfair Display",
+    "bodyFont": "DM Sans",
+    "headingFontFile": "",
+    "bodyFontFile": ""
+  },
+  "layout": {
+    "contentWidth": "standard",
+    "sectionSpacing": "standard",
+    "roundedCorners": false
+  },
+  "marketing": {
+    "announcementEnabled": true,
+    "announcementText": "Worcester’s original LGBTQ+ lounge — proudly here since 1971",
+    "defaultShareDescription": "Since 1971, MB Lounge has been Worcester’s neighborhood LGBTQ+ bar for dancing, trivia, live events, and good company."
+  },
+  "navigation": [
+    { "label": "What’s on", "url": "#events", "openInNewTab": false },
+    { "label": "Our story", "url": "#about", "openInNewTab": false },
+    { "label": "Private events", "url": "#private-events", "openInNewTab": false },
+    { "label": "Community", "url": "#community", "openInNewTab": false },
+    { "label": "Find us", "url": "#visit", "openInNewTab": false }
+  ],
+  "events": [],
+  "homepage": {
+    "seo": {
+      "title": "MB Lounge — Worcester, MA",
+      "description": "Since 1971, MB Lounge has been Worcester’s neighborhood LGBTQ+ bar for dancing, trivia, live events, and good company.",
+      "shareImage": ""
+    },
+    "sections": [
+      {
+        "type": "hero",
+        "eyebrow": "A Worcester original since 1971",
+        "heading": "Your night.",
+        "accentHeading": "Your people.",
+        "body": "A neighborhood lounge with a little more sparkle. Come for the music, stay for the community.",
+        "primaryAction": { "label": "See what’s on", "url": "#events" },
+        "secondaryAction": { "label": "Plan your visit", "url": "#visit" },
+        "slides": [
+          { "image": "assets/lounge/mb-lounge-dance-floor.jpg", "altText": "The MB Lounge dance floor lit in blue and green" },
+          { "image": "assets/lounge/mb-lounge-bar-wide.jpg", "altText": "The colorful Worcester skyline mural inside MB Lounge" },
+          { "image": "assets/lounge/mb-lounge-bar-taps.jpg", "altText": "Rainbow flags and taps behind the MB Lounge bar" },
+          { "image": "assets/lounge/mb-lounge-lights.jpg", "altText": "Colorful stage lights across the MB Lounge dance floor" }
+        ],
+        "slideDuration": 5000,
+        "transitionDuration": 500,
+        "transition": "fade"
+      },
+      {
+        "type": "event-list",
+        "eyebrow": "Save yourself a spot on the dance floor",
+        "heading": "Coming up",
+        "accentHeading": "at the Lounge.",
+        "intro": "Special events and times can change.",
+        "allEventsUrl": "https://www.facebook.com/MBLoungeWorcester/events",
+        "maxEvents": 6
+      },
+      {
+        "type": "live-video",
+        "enabled": true,
+        "title": "Live from the Lounge",
+        "caption": "A live look inside MB Lounge. 21+ only.",
+        "provider": "rtsp-me",
+        "embedUrl": "https://rtsp.me/embed/t9e9hkrN/",
+        "aspectRatio": "16:9"
+      },
+      {
+        "type": "story",
+        "eyebrow": "A little history, a lot of heart",
+        "heading": "Worcester’s",
+        "accentHeading": "living room.",
+        "body": "The MB has been part of Worcester’s story since 1971. We’re proudly LGBTQ+ owned and operated, and we’ve always believed a good neighborhood bar makes room for everyone.\n\nCome dance, catch up, meet someone new—or just settle in for a drink. However you show up, there’s a place for you here.",
+        "image": "assets/lounge/mb-lounge-bar-wide.jpg",
+        "imageAlt": "The MB Lounge bar and its colorful Worcester skyline mural",
+        "statValue": "1971",
+        "statLabel": "THE YEAR IT ALL STARTED"
+      },
+      {
+        "type": "private-events",
+        "eyebrow": "Make the night yours",
+        "heading": "A room for",
+        "accentHeading": "your kind of party.",
+        "body": "Big dance floor, full bar, and a central Worcester location. Host a celebration, bring your people together, and let us help make it a night.",
+        "image": "assets/lounge/mb-lounge-lights.jpg",
+        "imageAlt": "Colorful lights across the MB Lounge dance floor",
+        "action": { "label": "Ask about a private event", "url": "mailto:mblounge1@gmail.com" }
+      },
+      {
+        "type": "community",
+        "eyebrow": "Good neighbors know good neighbors",
+        "heading": "Local love,",
+        "accentHeading": "right around the corner.",
+        "body": "We’re proud to share our corner of Worcester with the independent businesses, artists, and community groups that make this city feel like home.",
+        "action": { "label": "Talk community with us", "url": "mailto:mblounge1@gmail.com" }
+      },
+      {
+        "type": "logo-ticker",
+        "enabled": true,
+        "heading": "MB Lounge community partners",
+        "logos": [],
+        "animation": true,
+        "direction": "left",
+        "durationSeconds": 34,
+        "gapPixels": 48,
+        "effect": "none",
+        "pauseOnHover": true
+      }
+    ]
+  }
+}
