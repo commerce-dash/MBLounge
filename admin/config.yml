@@ -81,6 +81,33 @@ collections:
               - { name: label, label: Link text, widget: string }
               - { name: url, label: Link destination, widget: string }
               - { name: openInNewTab, label: Open in new tab, widget: boolean, required: false }
+          - name: visit
+            label: Hours, location & contact
+            widget: object
+            fields:
+              - { name: addressLabel, label: Address label, widget: string }
+              - { name: address, label: Street address, widget: string }
+              - { name: cityLine, label: City and postal code, widget: string }
+              - { name: directionsLabel, label: Directions link text, widget: string }
+              - { name: directionsUrl, label: Directions URL, widget: string }
+              - { name: hoursLabel, label: Hours label, widget: string }
+              - { name: daysOpen, label: Days open, widget: string }
+              - { name: openHours, label: Hours, widget: string }
+              - { name: phoneLabel, label: Phone label, widget: string }
+              - { name: phone, label: Phone number, widget: string }
+              - { name: parkingNote, label: Parking note, widget: string }
+          - name: footer
+            label: Footer content & social links
+            widget: object
+            fields:
+              - { name: blurb, label: Footer description, widget: text }
+              - { name: address, label: Street address, widget: string }
+              - { name: cityLine, label: City and postal code, widget: string }
+              - { name: addressUrl, label: Map link, widget: string }
+              - { name: phone, label: Phone number, widget: string }
+              - { name: instagramUrl, label: Instagram URL, widget: string }
+              - { name: facebookUrl, label: Facebook URL, widget: string }
+              - { name: email, label: Contact email, widget: string }
           - name: events
             label: Upcoming events
             widget: list
