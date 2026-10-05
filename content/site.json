@@ -208,13 +208,6 @@
         "enabled": true,
         "logos": [
           {
-            "name": "MB Lounge",
-            "logo": "/MBLounge/assets/uploads/MB-Lounge.png",
-            "url": "#",
-            "altText": "",
-            "openInNewTab": true
-          },
-          {
             "name": "Revived",
             "logo": "/MBLounge/assets/uploads/partners/revived.webp",
             "url": "#",
