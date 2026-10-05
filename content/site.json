@@ -1,7 +1,7 @@
 {
   "siteName": "The MB Lounge",
   "brand": {
-    "logo": "",
+    "logo": "/MBLounge/assets/uploads/MB-Lounge.png",
     "primaryColor": "#211a1d",
     "accentColor": "#ef8ab3",
     "highlightColor": "#ef9bbd",
@@ -25,11 +25,31 @@
     "defaultShareDescription": "Since 1971, MB Lounge has been Worcester’s neighborhood LGBTQ+ bar for dancing, trivia, live events, and good company."
   },
   "navigation": [
-    { "label": "What’s on", "url": "#events", "openInNewTab": false },
-    { "label": "Our story", "url": "#about", "openInNewTab": false },
-    { "label": "Private events", "url": "#private-events", "openInNewTab": false },
-    { "label": "Community", "url": "#community", "openInNewTab": false },
-    { "label": "Find us", "url": "#visit", "openInNewTab": false }
+    {
+      "label": "What’s on",
+      "url": "#events",
+      "openInNewTab": false
+    },
+    {
+      "label": "Our story",
+      "url": "#about",
+      "openInNewTab": false
+    },
+    {
+      "label": "Private events",
+      "url": "#private-events",
+      "openInNewTab": false
+    },
+    {
+      "label": "Community",
+      "url": "#community",
+      "openInNewTab": false
+    },
+    {
+      "label": "Find us",
+      "url": "#visit",
+      "openInNewTab": false
+    }
   ],
   "visit": {
     "addressLabel": "COME ON IN",
@@ -89,13 +109,31 @@
         "heading": "Your night.",
         "accentHeading": "Your people.",
         "body": "A neighborhood lounge with a little more sparkle. Come for the music, stay for the community.",
-        "primaryAction": { "label": "See what’s on", "url": "#events" },
-        "secondaryAction": { "label": "Plan your visit", "url": "#visit" },
+        "primaryAction": {
+          "label": "See what’s on",
+          "url": "#events"
+        },
+        "secondaryAction": {
+          "label": "Plan your visit",
+          "url": "#visit"
+        },
         "slides": [
-          { "image": "assets/lounge/mb-lounge-dance-floor.jpg", "altText": "The MB Lounge dance floor lit in blue and green" },
-          { "image": "assets/lounge/mb-lounge-bar-wide.jpg", "altText": "The colorful Worcester skyline mural inside MB Lounge" },
-          { "image": "assets/lounge/mb-lounge-bar-taps.jpg", "altText": "Rainbow flags and taps behind the MB Lounge bar" },
-          { "image": "assets/lounge/mb-lounge-lights.jpg", "altText": "Colorful stage lights across the MB Lounge dance floor" }
+          {
+            "image": "assets/lounge/mb-lounge-dance-floor.jpg",
+            "altText": "The MB Lounge dance floor lit in blue and green"
+          },
+          {
+            "image": "assets/lounge/mb-lounge-bar-wide.jpg",
+            "altText": "The colorful Worcester skyline mural inside MB Lounge"
+          },
+          {
+            "image": "assets/lounge/mb-lounge-bar-taps.jpg",
+            "altText": "Rainbow flags and taps behind the MB Lounge bar"
+          },
+          {
+            "image": "assets/lounge/mb-lounge-lights.jpg",
+            "altText": "Colorful stage lights across the MB Lounge dance floor"
+          }
         ],
         "slideDuration": 5000,
         "transitionDuration": 500,
@@ -117,6 +155,7 @@
         "caption": "A live look inside MB Lounge. 21+ only.",
         "provider": "rtsp-me",
         "embedUrl": "https://rtsp.me/embed/t9e9hkrN/",
+        "poster": "",
         "aspectRatio": "16:9"
       },
       {
@@ -138,7 +177,10 @@
         "body": "Big dance floor, full bar, and a central Worcester location. Host a celebration, bring your people together, and let us help make it a night.",
         "image": "assets/lounge/mb-lounge-lights.jpg",
         "imageAlt": "Colorful lights across the MB Lounge dance floor",
-        "action": { "label": "Ask about a private event", "url": "mailto:mblounge1@gmail.com" }
+        "action": {
+          "label": "Ask about a private event",
+          "url": "mailto:mblounge1@gmail.com"
+        }
       },
       {
         "type": "community",
@@ -146,13 +188,24 @@
         "heading": "Local love,",
         "accentHeading": "right around the corner.",
         "body": "We’re proud to share our corner of Worcester with the independent businesses, artists, and community groups that make this city feel like home.",
-        "action": { "label": "Talk community with us", "url": "mailto:mblounge1@gmail.com" }
+        "action": {
+          "label": "Talk community with us",
+          "url": "mailto:mblounge1@gmail.com"
+        }
       },
       {
         "type": "logo-ticker",
-        "enabled": true,
         "heading": "MB Lounge community partners",
-        "logos": [],
+        "enabled": true,
+        "logos": [
+          {
+            "name": "aTest",
+            "logo": "/MBLounge/assets/uploads/MB-Lounge.png",
+            "url": "#",
+            "altText": "",
+            "openInNewTab": true
+          }
+        ],
         "animation": true,
         "direction": "left",
         "durationSeconds": 34,
