@@ -204,6 +204,41 @@
             "url": "#",
             "altText": "",
             "openInNewTab": true
+          },
+          {
+            "name": "Revived",
+            "logo": "/MBLounge/assets/uploads/partners/revived.webp",
+            "url": "#",
+            "altText": "Revived",
+            "openInNewTab": true
+          },
+          {
+            "name": "Confident Travel",
+            "logo": "/MBLounge/assets/uploads/partners/Confident-Travel.webp",
+            "url": "#",
+            "altText": "Confident Travel Logo",
+            "openInNewTab": true
+          },
+          {
+            "name": "Sarah Brueck Williams",
+            "logo": "/MBLounge/assets/uploads/partners/Sarah-Brueck-Williams.webp",
+            "url": "#",
+            "altText": "Sarah Brueck Williams Logo",
+            "openInNewTab": true
+          },
+          {
+            "name": "Juniper Rag",
+            "logo": "/MBLounge/assets/uploads/partners/Juniper-Rag.webp",
+            "url": "#",
+            "altText": "Juniper Rag Logo",
+            "openInNewTab": true
+          },
+          {
+            "name": "Michelle May",
+            "logo": "/MBLounge/assets/uploads/partners/MichelleMay.webp",
+            "url": "#",
+            "altText": "Michelle May Logo",
+            "openInNewTab": true
           }
         ],
         "animation": true,
