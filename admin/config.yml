@@ -109,26 +109,6 @@ collections:
               - { name: instagramUrl, label: Instagram URL, widget: string }
               - { name: facebookUrl, label: Facebook URL, widget: string }
               - { name: email, label: Contact email, widget: string }
-          - name: events
-            label: Upcoming events
-            description: Add an event here, set its date and time, then switch “Show on site” on to publish it. Past events disappear automatically.
-            widget: list
-            label_singular: Event
-            summary: '{{title}} — {{startsAt}}'
-            fields:
-              - { name: title, label: Event name, widget: string }
-              - { name: startsAt, label: Starts (date and local time), widget: datetime, format: 'YYYY-MM-DDTHH:mm:ssZ', hint: 'Choose the event start time in the venue’s local time.' }
-              - { name: endsAt, label: Ends (optional), widget: datetime, format: 'YYYY-MM-DDTHH:mm:ssZ', required: false, hint: 'Used for the calendar link. Defaults to two hours after start.' }
-              - name: eventType
-                label: Category
-                widget: select
-                options: ['Special event', Karaoke, Drag, DJ, Trivia, Holiday, 'Live music', Other]
-                default: Special event
-              - { name: summary, label: Short description, widget: text, hint: 'One or two sentences. Include important details guests need before they arrive.' }
-              - { name: priceLabel, label: Admission / age note, widget: string, required: false, hint: 'For example: Free · 21+ or $10 cover · 21+.' }
-              - { name: ticketUrl, label: Event details or ticket link, widget: string, required: false, hint: 'Paste a full URL, such as the Facebook event or ticket page.' }
-              - { name: featured, label: Feature this event, widget: boolean, required: false, hint: 'Featured events receive the highlighted card style.' }
-              - { name: published, label: Show on site, widget: boolean, hint: 'Turn off to save a draft without showing it to visitors.' }
           - name: homepage
             label: Homepage
             widget: object
@@ -302,3 +282,35 @@ collections:
                       - { name: effect, label: Logo effect, widget: select, options: [{ label: None, value: none }, { label: Gentle float, value: float }] }
                       - { name: pauseOnHover, label: Pause while hovered or focused, widget: boolean }
                       - { name: backgroundColor, label: Background color override, widget: color, required: false, hint: "Optional. Leave blank to use this module’s default background." }
+  - name: events
+    label: Events
+    description: Create and manage upcoming events shown on the homepage. Past events hide automatically.
+    files:
+      - name: events
+        label: Event list
+        file: content/events.json
+        format: json
+        fields:
+          - name: events
+            label: Upcoming events
+            description: Add an event, set its local date and time, and turn “Show on site” on to publish it.
+            widget: list
+            label_singular: Event
+            summary: '{{title}} — {{startsAt}}'
+            fields:
+              - { name: title, label: Event name, widget: string }
+              - { name: startsAt, label: Starts (date and local time), widget: datetime, format: 'YYYY-MM-DDTHH:mm:ssZ', hint: 'Choose the event start time in the venue’s local time.' }
+              - { name: endsAt, label: Ends (optional), widget: datetime, format: 'YYYY-MM-DDTHH:mm:ssZ', required: false, hint: 'Used for the calendar link. Defaults to two hours after start.' }
+              - name: eventType
+                label: Category
+                widget: select
+                options: ['Special event', Karaoke, Drag, DJ, Trivia, Holiday, 'Live music', Other]
+                default: Special event
+              - { name: summary, label: Short description, widget: text, hint: 'One or two sentences. Include important details guests need before they arrive.' }
+              - { name: priceLabel, label: Admission / age note, widget: string, required: false, hint: 'For example: Free · 21+ or $10 cover · 21+.' }
+              - { name: ticketUrl, label: Event details or ticket link, widget: string, required: false, hint: 'Paste a full URL, such as the Facebook event or ticket page.' }
+              - { name: backgroundImage, label: Event card background image, widget: image, required: false }
+              - { name: backgroundColor, label: Event card background color, widget: color, required: false }
+              - { name: fontColor, label: Event card font color, widget: color, required: false }
+              - { name: featured, label: Feature this event, widget: boolean, required: false, hint: 'Featured events receive the highlighted card style.' }
+              - { name: published, label: Show on site, widget: boolean, hint: 'Turn off to save a draft without showing it to visitors.' }

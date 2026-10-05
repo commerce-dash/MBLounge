@@ -20,6 +20,7 @@ const FONT_STACKS = {
   'system-ui': 'system-ui, sans-serif',
 };
 const SITE_CONTENT_URL = 'content/site.json?v=4';
+const EVENTS_CONTENT_URL = 'content/events.json?v=1';
 const BASE_PATH = new URL('.', document.baseURI).pathname.replace(/\/$/, '');
 
 const menuToggle = document.querySelector('.menu-toggle');
@@ -303,6 +304,12 @@ function updateEventCards(events, block) {
   items.forEach((event) => {
     const card = document.createElement('article');
     card.className = `event-card reveal${event.featured ? ' event-card-featured' : ''}`;
+    const eventImage = assetUrl(event.backgroundImage);
+    if (eventImage) {
+      card.style.backgroundImage = `linear-gradient(rgba(20, 13, 17, .58), rgba(20, 13, 17, .72)), url("${eventImage.replace(/["\\]/g, '')}")`;
+      card.style.backgroundPosition = 'center';
+      card.style.backgroundSize = 'cover';
+    }
     const date = new Date(event.startsAt);
     const dateBox = document.createElement('div');
     dateBox.className = 'event-date';
@@ -345,6 +352,7 @@ function updateEventCards(events, block) {
     arrow.setAttribute('aria-label', `Event details for ${event.title || 'MB Lounge event'}`);
     arrow.textContent = '↗';
     card.append(dateBox, copy, arrow);
+    applyModuleColors(card, event);
     fragment.append(card);
   });
   grid.replaceChildren(fragment);
@@ -747,7 +755,16 @@ async function loadCMS() {
     if (!response.ok) throw new Error(`Site content returned ${response.status}`);
     const data = await response.json();
     applySettings(data.settings || data);
-    const events = Array.isArray(data.events) ? data.events.map(recordValue) : [];
+    let events = [];
+    try {
+      const eventsResponse = await fetch(EVENTS_CONTENT_URL, { headers: { Accept: 'application/json' } });
+      if (eventsResponse.ok) {
+        const eventData = await eventsResponse.json();
+        events = Array.isArray(eventData.events) ? eventData.events.map(recordValue) : [];
+      }
+    } catch (error) {
+      console.info('MB Lounge event content is not available; showing the built-in event preview.', error);
+    }
     if (data.homepage) {
       document.querySelector('[data-cms-generated="true"]')?.remove();
       applyHomepage(data.homepage, events);

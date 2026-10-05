@@ -3,7 +3,7 @@
   if (!window.CMS || !window.createClass || !window.h) return;
 
   var h = window.h;
-  var previewCSS = '/MBLounge/admin/preview.css?v=3';
+  var previewCSS = '/MBLounge/admin/preview.css?v=4';
   window.CMS.registerPreviewStyle(previewCSS);
 
   function val(value, fallback) {
@@ -85,7 +85,12 @@
           var date = event.startsAt ? new Date(event.startsAt) : null;
           var dateLabel = date && !isNaN(date) ? date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : 'UPCOMING';
           var timeLabel = date && !isNaN(date) ? date.toLocaleDateString('en-US', { weekday:'long', month:'short', day:'numeric' }) + ' · ' + date.toLocaleTimeString('en-US', { hour:'numeric', minute:'2-digit' }) : '';
-          return h('article', { className: 'preview-event-card' + (event.featured ? ' preview-event-featured' : ''), key: eventIndex },
+          var eventCardStyle = {};
+          if (event.backgroundColor) eventCardStyle.backgroundColor = event.backgroundColor;
+          if (event.fontColor) { eventCardStyle.color = event.fontColor; eventCardStyle['--preview-event-color'] = event.fontColor; }
+          var eventImage = imageUrl(event.backgroundImage, getAsset);
+          if (eventImage) eventCardStyle.backgroundImage = 'linear-gradient(#17131599,#171315bb),url("' + eventImage + '")';
+          return h('article', { className: 'preview-event-card' + (event.featured ? ' preview-event-featured' : ''), key: eventIndex, style: eventCardStyle },
             h('span', { className: 'preview-event-date' }, dateLabel),
             h('small', null, val(event.eventType, 'SPECIAL EVENT')),
             h('h3', null, val(event.title, 'Event title')),
@@ -183,5 +188,32 @@
     }
   });
 
+  var EventsPreview = window.createClass({
+    render: function () {
+      var data = this.props.entry.get('data').toJS();
+      var events = data.events || [];
+      return h('div', { className: 'mbl-preview' },
+        h('main', { className: 'preview-event-admin' },
+          h('h1', null, 'Event card preview'),
+          events.length ? events.map(function (event, index) {
+            var style = {};
+            if (event.backgroundColor) style.backgroundColor = event.backgroundColor;
+            if (event.fontColor) { style.color = event.fontColor; style['--preview-event-color'] = event.fontColor; }
+            var image = imageUrl(event.backgroundImage, this.props.getAsset);
+            if (image) style.backgroundImage = 'linear-gradient(#17131599,#171315bb),url("' + image + '")';
+            return h('article', { className: 'preview-event-card' + (event.featured ? ' preview-event-featured' : ''), key: index, style: style },
+              h('span', { className: 'preview-event-date' }, event.startsAt || 'DATE'),
+              h('small', null, val(event.eventType, 'SPECIAL EVENT')),
+              h('h2', null, val(event.title, 'Event title')),
+              h('p', null, val(event.summary, 'Event details will appear here.')),
+              h('span', { className: 'preview-event-time' }, val(event.priceLabel, ''))
+            );
+          }, this) : h('p', null, 'Add an event to preview its homepage card.')
+        )
+      );
+    }
+  });
+
   window.CMS.registerPreviewTemplate('site', SitePreview);
+  window.CMS.registerPreviewTemplate('events', EventsPreview);
 })();
