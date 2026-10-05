@@ -4,7 +4,7 @@
     "logo": "/MBLounge/assets/uploads/MB-Lounge.png",
     "primaryColor": "#211a1d",
     "accentColor": "#ef8ab3",
-    "highlightColor": "#b7a4ab",
+    "highlightColor": "#eccad7",
     "surfaceColor": "#f6f1eb",
     "textColor": "#211a1d"
   },
@@ -179,7 +179,7 @@
         "heading": "A room for",
         "accentHeading": "your kind of party.",
         "body": "Big dance floor, full bar, and a central Worcester location. Host a celebration, bring your people together, and let us help make it a night.",
-        "backgroundColor": "",
+        "backgroundColor": "#000000",
         "image": "assets/lounge/mb-lounge-lights.jpg",
         "imageAlt": "Colorful lights across the MB Lounge dance floor",
         "action": {
