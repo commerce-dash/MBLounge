@@ -75,6 +75,30 @@
     "facebookUrl": "https://www.facebook.com/MBLoungeWorcester/",
     "email": "mblounge1@gmail.com"
   },
+  "events": [
+    {
+      "title": "JOINT OPERATIONS PRESENTS: HALLOWEEN PARTY AT MB LOUNGE!",
+      "startsAt": "2026-10-30T21:30:00-04:00",
+      "endsAt": "",
+      "eventType": "Halloween party",
+      "summary": "Halloween party at MB Lounge.",
+      "priceLabel": "21+",
+      "ticketUrl": "https://www.facebook.com/MBLoungeWorcester/events",
+      "featured": true,
+      "published": true
+    },
+    {
+      "title": "MB LOUNGE’S ANNUAL HALLOWEEN PARTY & COSTUME CONTEST!",
+      "startsAt": "2026-10-31T21:00:00-04:00",
+      "endsAt": "",
+      "eventType": "Costume contest",
+      "summary": "MB Lounge, 40 Grafton Street, Worcester. Join the annual Halloween party and costume contest.",
+      "priceLabel": "21+",
+      "ticketUrl": "https://www.facebook.com/MBLoungeWorcester/events",
+      "featured": false,
+      "published": true
+    }
+  ],
   "homepage": {
     "seo": {
       "title": "MB Lounge — Worcester, MA",
@@ -128,8 +152,8 @@
         "fontColor": "",
         "backgroundColor": "",
         "enabled": true,
-        "title": "Live from the Lounge",
-        "caption": "A live look inside MB Lounge.",
+        "title": "Live from our rooftop.",
+        "caption": "our Pride flag flying high",
         "provider": "rtsp-me",
         "embedUrl": "https://rtsp.me/embed/t9e9hkrN/",
         "poster": "",
