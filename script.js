@@ -19,7 +19,7 @@ const FONT_STACKS = {
   Arial: 'Arial, sans-serif',
   'system-ui': 'system-ui, sans-serif',
 };
-const SITE_CONTENT_URL = 'content/site.json?v=3';
+const SITE_CONTENT_URL = 'content/site.json?v=4';
 const BASE_PATH = new URL('.', document.baseURI).pathname.replace(/\/$/, '');
 
 const menuToggle = document.querySelector('.menu-toggle');
@@ -696,7 +696,7 @@ async function loadCMS() {
   applySlides(DEFAULT_SLIDES, 5000, 500, 'fade');
   applyFallbackVideo();
   try {
-    const response = await fetch(`${SITE_CONTENT_URL}?v=1`, { headers: { Accept: 'application/json' } });
+    const response = await fetch(SITE_CONTENT_URL, { headers: { Accept: 'application/json' } });
     if (!response.ok) throw new Error(`Site content returned ${response.status}`);
     const data = await response.json();
     if (data.settings) applySettings(data.settings);
