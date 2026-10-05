@@ -4,8 +4,8 @@
     "logo": "/MBLounge/assets/uploads/MB-Lounge.png",
     "primaryColor": "#211a1d",
     "accentColor": "#ef8ab3",
-    "highlightColor": "#ef9bbd",
-    "surfaceColor": "#eb9bbd",
+    "highlightColor": "#b7a4ab",
+    "surfaceColor": "#f6f1eb",
     "textColor": "#211a1d"
   },
   "typography": {
@@ -62,7 +62,8 @@
     "openHours": "7 PM – 2 AM",
     "phoneLabel": "SAY HELLO",
     "phone": "508-799-4521",
-    "parkingNote": "Across-street public parking"
+    "parkingNote": "Across-street public parking",
+    "backgroundColor": ""
   },
   "footer": {
     "blurb": "A neighborhood lounge for good nights and the people who make them.",
@@ -78,6 +79,7 @@
     {
       "title": "JOINT OPERATIONS PRESENTS: HALLOWEEN PARTY AT MB LOUNGE!",
       "startsAt": "2026-10-30T21:30:00-04:00",
+      "endsAt": "",
       "eventType": "Halloween party",
       "summary": "Halloween party at MB Lounge.",
       "priceLabel": "21+",
@@ -88,6 +90,7 @@
     {
       "title": "MB LOUNGE’S ANNUAL HALLOWEEN PARTY & COSTUME CONTEST!",
       "startsAt": "2026-10-31T21:00:00-04:00",
+      "endsAt": "",
       "eventType": "Costume contest",
       "summary": "MB Lounge, 40 Grafton Street, Worcester. Join the annual Halloween party and costume contest.",
       "priceLabel": "21+",
@@ -137,19 +140,22 @@
         ],
         "slideDuration": 5000,
         "transitionDuration": 500,
-        "transition": "fade"
+        "transition": "fade",
+        "backgroundColor": ""
       },
       {
         "type": "event-list",
         "eyebrow": "Save yourself a spot on the dance floor",
         "heading": "Coming up",
         "accentHeading": "at the Lounge.",
+        "backgroundColor": "",
         "intro": "Special events and times can change.",
         "allEventsUrl": "https://www.facebook.com/MBLoungeWorcester/events",
         "maxEvents": 6
       },
       {
         "type": "live-video",
+        "backgroundColor": "",
         "enabled": true,
         "title": "Live from the Lounge",
         "caption": "A live look inside MB Lounge.",
@@ -164,6 +170,7 @@
         "heading": "Worcester’s",
         "accentHeading": "living room.",
         "body": "The MB has been part of Worcester’s story since 1971. We’re proudly LGBTQ+ owned and operated, and we’ve always believed a good neighborhood bar makes room for everyone.\n\nCome dance, catch up, meet someone new—or just settle in for a drink. However you show up, there’s a place for you here.",
+        "backgroundColor": "",
         "image": "assets/lounge/mb-lounge-bar-wide.jpg",
         "imageAlt": "The MB Lounge bar and its colorful Worcester skyline mural",
         "statValue": "1971",
@@ -175,6 +182,7 @@
         "heading": "A room for",
         "accentHeading": "your kind of party.",
         "body": "Big dance floor, full bar, and a central Worcester location. Host a celebration, bring your people together, and let us help make it a night.",
+        "backgroundColor": "",
         "image": "assets/lounge/mb-lounge-lights.jpg",
         "imageAlt": "Colorful lights across the MB Lounge dance floor",
         "action": {
@@ -188,6 +196,7 @@
         "heading": "Local love,",
         "accentHeading": "right around the corner.",
         "body": "We’re proud to share our corner of Worcester with the independent businesses, artists, and community groups that make this city feel like home.",
+        "backgroundColor": "",
         "action": {
           "label": "Talk community with us",
           "url": "mailto:mblounge1@gmail.com"
@@ -196,6 +205,7 @@
       {
         "type": "logo-ticker",
         "heading": "MB Lounge community partners",
+        "backgroundColor": "",
         "enabled": true,
         "logos": [
           {
