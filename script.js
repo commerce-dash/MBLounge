@@ -19,7 +19,7 @@ const FONT_STACKS = {
   Arial: 'Arial, sans-serif',
   'system-ui': 'system-ui, sans-serif',
 };
-const SITE_CONTENT_URL = 'content/site.json';
+const SITE_CONTENT_URL = 'content/site.json?v=2';
 const BASE_PATH = new URL('.', document.baseURI).pathname.replace(/\/$/, '');
 
 const menuToggle = document.querySelector('.menu-toggle');
@@ -146,6 +146,8 @@ function applySettings(input) {
   const typography = recordValue(settings.typography);
   const layout = recordValue(settings.layout);
   const marketing = recordValue(settings.marketing);
+  const visit = recordValue(settings.visit);
+  const footer = recordValue(settings.footer);
   const root = document.documentElement;
   if (brand.primaryColor) root.style.setProperty('--ink', brand.primaryColor);
   if (brand.accentColor) root.style.setProperty('--accent', brand.accentColor);
@@ -218,6 +220,51 @@ function applySettings(input) {
   }
 
   if (settings.siteName) document.title = `${settings.siteName} — Worcester, MA`;
+  if (settings.siteName) document.querySelectorAll('.brand-copy strong').forEach((element) => { element.textContent = settings.siteName.toUpperCase(); });
+  if (visit.addressLabel) setText('.visit-address .strip-label', visit.addressLabel);
+  if (visit.address) setText('.visit-address strong', visit.address);
+  if (visit.cityLine || visit.directionsUrl) {
+    const addressLine = document.querySelector('.visit-address>span:last-child');
+    if (addressLine) {
+      addressLine.replaceChildren(document.createTextNode(visit.cityLine || ''));
+      if (visit.directionsUrl) {
+        addressLine.append(document.createTextNode(' · '));
+        const directions = document.createElement('a');
+        directions.href = visit.directionsUrl;
+        directions.target = '_blank';
+        directions.rel = 'noopener noreferrer';
+        directions.textContent = visit.directionsLabel || 'Get directions ↗';
+        addressLine.append(directions);
+      }
+    }
+  }
+  if (visit.hoursLabel) setText('.visit-hours .strip-label', visit.hoursLabel);
+  if (visit.daysOpen) setText('.visit-hours strong', visit.daysOpen);
+  if (visit.openHours) setText('.visit-hours>span:last-child', visit.openHours);
+  if (visit.phoneLabel) setText('.visit-phone .strip-label', visit.phoneLabel);
+  if (visit.phone) {
+    const phone = document.querySelector('.visit-phone strong a');
+    if (phone) { phone.textContent = visit.phone; phone.href = `tel:${visit.phone.replace(/[^+\d]/g, '')}`; }
+  }
+  if (visit.parkingNote) setText('.visit-phone>span:last-child', visit.parkingNote);
+  if (footer.blurb) setText('.footer-blurb', footer.blurb);
+  const footerAddress = document.querySelector('.footer-contact>a');
+  if (footerAddress && (footer.address || footer.cityLine)) {
+    footerAddress.replaceChildren(document.createTextNode(`${footer.address || ''}${footer.address && footer.cityLine ? '\n' : ''}${footer.cityLine || ''} ↗`));
+    if (footer.addressUrl) { footerAddress.href = footer.addressUrl; footerAddress.target = '_blank'; footerAddress.rel = 'noopener noreferrer'; }
+  }
+  const footerPhone = document.querySelector('.footer-contact>a[href^="tel:"]');
+  if (footer.phone && footerPhone) { footerPhone.textContent = footer.phone; footerPhone.href = `tel:${footer.phone.replace(/[^+\d]/g, '')}`; }
+  const footerContacts = document.querySelectorAll('.footer-contact');
+  const socialLinks = footerContacts[footerContacts.length - 1];
+  if (socialLinks) {
+    const instagram = socialLinks.querySelector('a[href*="instagram"]');
+    const facebook = socialLinks.querySelector('a[href*="facebook"]');
+    const email = socialLinks.querySelector('a[href^="mailto:"]');
+    if (footer.instagramUrl && instagram) instagram.href = footer.instagramUrl;
+    if (footer.facebookUrl && facebook) facebook.href = footer.facebookUrl;
+    if (footer.email && email) { email.textContent = footer.email; email.href = `mailto:${footer.email}`; }
+  }
   const description = marketing.defaultShareDescription;
   if (description) document.querySelector('meta[name="description"]')?.setAttribute('content', description);
 }

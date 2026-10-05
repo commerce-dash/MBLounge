@@ -22,7 +22,7 @@ Uploaded files are stored in `assets/uploads/`. The four supplied venue photos a
 ## Content model
 
 - Site identity, logo, brand colors, font choices and optional font files.
-- Navigation, marketing announcement, and search/social metadata.
+- Navigation, marketing announcement, hours, address, parking, contact links, and search/social metadata.
 - Upcoming event cards (date, time, description, link, highlight, visibility).
 - Reorderable homepage modules: hero slideshow, events, live video, story, private events, community, promotional banner, rich text, photo gallery, static logo grid, and scrolling logo ticker.
 - Layout width, section spacing, and corner style.
