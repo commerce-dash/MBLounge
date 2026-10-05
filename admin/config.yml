@@ -96,6 +96,7 @@ collections:
               - { name: phoneLabel, label: Phone label, widget: string }
               - { name: phone, label: Phone number, widget: string }
               - { name: parkingNote, label: Parking note, widget: string }
+              - { name: backgroundColor, label: Background color override, widget: color, required: false, hint: "Optional. Leave blank to use the default background." }
           - name: footer
             label: Footer content & social links
             widget: object
@@ -167,6 +168,7 @@ collections:
                       - { name: slideDuration, label: Time per image in milliseconds, widget: number, value_type: int }
                       - { name: transitionDuration, label: Fade duration in milliseconds, widget: number, value_type: int }
                       - { name: transition, label: Transition, widget: select, options: [fade, cut] }
+                      - { name: backgroundColor, label: Background color override, widget: color, required: false, hint: "Optional. Leave blank to use this module’s default background." }
                   - name: event-list
                     label: Event listing
                     fields:
@@ -176,6 +178,7 @@ collections:
                       - { name: intro, label: Event note, widget: string }
                       - { name: allEventsUrl, label: All events link, widget: string }
                       - { name: maxEvents, label: Maximum events shown, widget: number, value_type: int }
+                      - { name: backgroundColor, label: Background color override, widget: color, required: false, hint: "Optional. Leave blank to use this module’s default background." }
                   - name: story
                     label: Our story
                     fields:
@@ -187,6 +190,7 @@ collections:
                       - { name: imageAlt, label: Photo description, widget: string, required: false }
                       - { name: statValue, label: Year/statistic, widget: string }
                       - { name: statLabel, label: Statistic caption, widget: string }
+                      - { name: backgroundColor, label: Background color override, widget: color, required: false, hint: "Optional. Leave blank to use this module’s default background." }
                   - name: private-events
                     label: Private events
                     fields:
@@ -200,6 +204,7 @@ collections:
                         label: Button
                         widget: object
                         fields: [{ name: label, label: Text, widget: string }, { name: url, label: Link, widget: string }]
+                      - { name: backgroundColor, label: Background color override, widget: color, required: false, hint: "Optional. Leave blank to use this module’s default background." }
                   - name: community
                     label: Community
                     fields:
@@ -211,6 +216,7 @@ collections:
                         label: Button
                         widget: object
                         fields: [{ name: label, label: Text, widget: string }, { name: url, label: Link, widget: string }]
+                      - { name: backgroundColor, label: Background color override, widget: color, required: false, hint: "Optional. Leave blank to use this module’s default background." }
                   - name: live-video
                     label: Live video feed
                     fields:
@@ -221,6 +227,7 @@ collections:
                       - { name: embedUrl, label: Embed URL, widget: string }
                       - { name: poster, label: Poster image, widget: image, required: false }
                       - { name: aspectRatio, label: Aspect ratio, widget: select, options: ['16:9', '4:3', '1:1'] }
+                      - { name: backgroundColor, label: Background color override, widget: color, required: false, hint: "Optional. Leave blank to use this module’s default background." }
                   - name: promo-banner
                     label: Marketing banner
                     fields:
@@ -233,12 +240,14 @@ collections:
                         label: Button
                         widget: object
                         fields: [{ name: label, label: Text, widget: string }, { name: url, label: Link, widget: string }]
+                      - { name: backgroundColor, label: Background color override, widget: color, required: false, hint: "Optional. Leave blank to use this module’s default background." }
                   - name: rich-text
                     label: Text section
                     fields:
                       - { name: eyebrow, label: Eyebrow, widget: string, required: false }
                       - { name: heading, label: Heading, widget: string, required: false }
                       - { name: body, label: Text, widget: text }
+                      - { name: backgroundColor, label: Background color override, widget: color, required: false, hint: "Optional. Leave blank to use this module’s default background." }
                   - name: photo-gallery
                     label: Photo gallery
                     fields:
@@ -248,6 +257,7 @@ collections:
                         label: Photos
                         widget: list
                         fields: [{ name: image, label: Photo, widget: image }, { name: altText, label: Photo description, widget: string, required: false }]
+                      - { name: backgroundColor, label: Background color override, widget: color, required: false, hint: "Optional. Leave blank to use this module’s default background." }
                   - name: logo-grid
                     label: Community logos (grid)
                     fields:
@@ -257,6 +267,7 @@ collections:
                         label: Logos
                         widget: list
                         fields: [{ name: name, label: Organization name, widget: string }, { name: logo, label: Logo image, widget: image }, { name: url, label: Website, widget: string, required: false }]
+                      - { name: backgroundColor, label: Background color override, widget: color, required: false, hint: "Optional. Leave blank to use this module’s default background." }
                   - name: logo-ticker
                     label: Scrolling logo ticker
                     fields:
@@ -279,3 +290,4 @@ collections:
                       - { name: gapPixels, label: Space between logos (18–96 px), widget: number, value_type: int }
                       - { name: effect, label: Logo effect, widget: select, options: [{ label: None, value: none }, { label: Gentle float, value: float }] }
                       - { name: pauseOnHover, label: Pause while hovered or focused, widget: boolean }
+                      - { name: backgroundColor, label: Background color override, widget: color, required: false, hint: "Optional. Leave blank to use this module’s default background." }

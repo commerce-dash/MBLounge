@@ -14,7 +14,7 @@ body { margin: 0; color: #211a1d; font-family: 'DM Sans', Arial, sans-serif; -we
 .preview-header nav { display:flex; align-items:center; gap:22px; color:#e3d9dd; font-size:9px; }
 .preview-nav-cta { padding:9px 12px; border:1px solid #ffffff55; font-size:8px; letter-spacing:.08em; white-space:nowrap; }
 .preview-hero { position:relative; min-height:350px; display:flex; align-items:center; color:white; background-color:var(--preview-ink); background-image:var(--preview-hero-image); background-position:center; background-size:cover; }
-.preview-hero-shade { position:absolute; inset:0; background:linear-gradient(90deg,var(--preview-ink) 0%,var(--preview-ink) 26%,#211a1de8 43%,#211a1d55 76%,#211a1d22 100%),linear-gradient(0deg,#17131588,transparent 40%); }
+.preview-hero-shade { position:absolute; inset:0; background:linear-gradient(90deg,var(--preview-module-background,var(--preview-ink)) 0%,var(--preview-module-background,var(--preview-ink)) 26%,color-mix(in srgb,var(--preview-module-background,var(--preview-ink)) 90%,transparent) 43%,#211a1d55 76%,#211a1d22 100%),linear-gradient(0deg,#17131588,transparent 40%); }
 .preview-hero-copy { position:relative; z-index:1; max-width:440px; padding:55px 0 70px 11%; }
 .preview-eyebrow { margin:0 0 15px; color:#e3cdd6; font-size:8px; letter-spacing:.18em; text-transform:uppercase; }
 .preview-hero h1 { display:flex; flex-direction:column; margin:0; font:600 clamp(38px,6vw,66px)/.99 var(--preview-heading-font); letter-spacing:-.045em; }
@@ -35,6 +35,9 @@ body { margin: 0; color: #211a1d; font-family: 'DM Sans', Arial, sans-serif; -we
 .preview-muted { color:#786d71; font-size:10px; }
 .preview-event-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; }
 .preview-event-card { min-height:165px; padding:17px; background:#fff; border:1px solid #e5dcd8; }
+.preview-logo-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(110px,1fr)); gap:12px; margin-top:20px; }
+.preview-logo-grid-item { min-height:78px; display:grid; place-items:center; padding:12px; background:#ffffffc9; color:#30242b; text-align:center; font:600 13px var(--preview-heading-font); }
+.preview-logo-grid-item img { max-width:100%; max-height:52px; object-fit:contain; }
 .preview-event-date { float:right; color:#9d5777; font-size:8px; font-weight:700; text-transform:uppercase; }
 .preview-event-card small { color:#9d5777; font-size:7px; letter-spacing:.11em; text-transform:uppercase; }
 .preview-event-card h3 { margin:10px 0 7px; font-size:16px; line-height:1.15; }

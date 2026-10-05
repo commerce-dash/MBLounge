@@ -178,6 +178,9 @@ function applySettings(input) {
     const dot = announcement.querySelector('.live-dot');
     announcement.replaceChildren(...(dot ? [dot, text] : [text]));
   }
+  if (visit.backgroundColor && CSS.supports('color', visit.backgroundColor)) {
+    document.querySelector('#visit')?.style.setProperty('background-color', visit.backgroundColor);
+  }
 
   const logo = assetUrl(brand.logo);
   if (logo) {
@@ -677,7 +680,16 @@ function applyHomepage(input, events) {
   const main = document.querySelector('#main');
   const visit = document.querySelector('#visit');
   if (!main || !visit) return;
-  const visibleSections = sections.map((block) => generatedBlock(recordValue(block), events)).filter(Boolean);
+  const visibleSections = sections.map((record) => {
+    const block = recordValue(record);
+    const section = generatedBlock(block, events);
+    const backgroundColor = block.backgroundColor;
+    if (section && backgroundColor && CSS.supports('color', backgroundColor)) {
+      section.style.backgroundColor = backgroundColor;
+      section.style.setProperty('--cms-module-background', backgroundColor);
+    }
+    return section;
+  }).filter(Boolean);
   const heroPosition = visibleSections.indexOf(document.querySelector('#home'));
   if (!visibleSections.includes(visit)) visibleSections.splice(heroPosition >= 0 ? heroPosition + 1 : 0, 0, visit);
   main.replaceChildren(...visibleSections);

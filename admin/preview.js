@@ -3,7 +3,7 @@
   if (!window.CMS || !window.createClass || !window.h) return;
 
   var h = window.h;
-  var previewCSS = '/MBLounge/admin/preview.css';
+  var previewCSS = '/MBLounge/admin/preview.css?v=2';
   window.CMS.registerPreviewStyle(previewCSS);
 
   function val(value, fallback) {
@@ -12,6 +12,19 @@
 
   function keyPath(path) {
     return { 'data-key-path': path, tabIndex: 0 };
+  }
+
+  function moduleStyle(block, style) {
+    var result = Object.assign({}, style || {});
+    if (block.backgroundColor) {
+      result.backgroundColor = block.backgroundColor;
+      result['--preview-module-background'] = block.backgroundColor;
+    }
+    return result;
+  }
+
+  function moduleProps(block, index, className, style) {
+    return { className: className, key: index, style: moduleStyle(block, style) };
   }
 
   function imageUrl(path, getAsset) {
@@ -44,7 +57,7 @@
     if (type === 'hero') {
       var slides = block.slides || [];
       var heroImage = slides[0] && imageUrl(slides[0].image, getAsset);
-      return h('section', { className: 'preview-hero', key: index, style: heroImage ? { '--preview-hero-image': 'url("' + heroImage + '")' } : {} },
+      return h('section', moduleProps(block, index, 'preview-hero', heroImage ? { '--preview-hero-image': 'url("' + heroImage + '")' } : {}),
         h('div', { className: 'preview-hero-shade' }),
         h('div', { className: 'preview-hero-copy' },
           h('p', Object.assign({ className: 'preview-eyebrow' }, keyPath(base + 'eyebrow')), '✦  ' + val(block.eyebrow, 'A Worcester original')),
@@ -61,7 +74,7 @@
 
     if (type === 'event-list') {
       var events = (data.events || []).filter(function (event) { return event.published !== false && event.startsAt && !isNaN(new Date(event.startsAt)) && new Date(event.startsAt).getTime() >= Date.now(); }).sort(function (a, b) { return new Date(a.startsAt) - new Date(b.startsAt); }).slice(0, Number(block.maxEvents) || 3);
-      return h('section', { className: 'preview-section preview-events', key: index },
+      return h('section', moduleProps(block, index, 'preview-section preview-events'),
         h('div', { className: 'preview-section-heading' }, sectionTitle(block, index), action('All events', block.allEventsUrl, 'preview-text-link')),
         block.intro && h('p', { className: 'preview-muted' }, block.intro),
         h('div', { className: 'preview-event-grid' }, events.length ? events.map(function (event, eventIndex) {
@@ -81,7 +94,7 @@
     }
 
     if (type === 'story' || type === 'private-events') {
-      return h('section', { className: 'preview-section preview-split ' + (type === 'private-events' ? 'preview-dark' : ''), key: index },
+      return h('section', moduleProps(block, index, 'preview-section preview-split ' + (type === 'private-events' ? 'preview-dark' : '')),
         h('div', { className: 'preview-split-image', style: image ? { backgroundImage: 'url("' + image + '")' } : {} }, image && h('img', { src: image, alt: block.imageAlt || '', 'data-key-path': base + 'image' })),
         h('div', { className: 'preview-split-copy' }, sectionTitle(block, index),
           h('p', { className: 'preview-body', 'data-key-path': base + 'body' }, val(block.body, 'Add section copy in the editor.')),
@@ -91,12 +104,19 @@
     }
 
     if (type === 'community') {
-      return h('section', { className: 'preview-section preview-community', key: index }, sectionTitle(block, index), h('p', { className: 'preview-body', 'data-key-path': base + 'body' }, val(block.body, 'Add your community message.')), action(block.action && block.action.label, block.action && block.action.url, 'preview-text-link'));
+      return h('section', moduleProps(block, index, 'preview-section preview-community'), sectionTitle(block, index), h('p', { className: 'preview-body', 'data-key-path': base + 'body' }, val(block.body, 'Add your community message.')), action(block.action && block.action.label, block.action && block.action.url, 'preview-text-link'));
+    }
+
+    if (type === 'logo-grid') {
+      return h('section', moduleProps(block, index, 'preview-section preview-logo-grid'), sectionTitle(block, index), h('div', { className: 'preview-logo-grid' }, (block.logos || []).map(function (entry, logoIndex) {
+        var src = imageUrl(entry.logo, getAsset);
+        return h('div', { className: 'preview-logo-grid-item', key: logoIndex }, src ? h('img', { src: src, alt: entry.name || '', 'data-key-path': base + 'logos.' + logoIndex + '.logo' }) : val(entry.name, 'Partner logo'));
+      })));
     }
 
     if (type === 'logo-ticker') {
       var logos = block.logos || [];
-      return h('section', { className: 'preview-ticker-section', key: index },
+      return h('section', moduleProps(block, index, 'preview-ticker-section'),
         h('h2', { 'data-key-path': base + 'heading' }, val(block.heading, 'Community partners')),
         h('div', { className: 'preview-ticker', style: { '--ticker-time': (Number(block.durationSeconds) || 34) + 's' } },
           h('div', { className: 'preview-ticker-row' }, (logos.length ? logos.concat(logos) : [{ name: 'Uploaded partner logos appear here' }]).map(function (logo, logoIndex) {
@@ -110,20 +130,20 @@
 
     if (type === 'live-video') {
       if (block.enabled === false) return null;
-      return h('section', { className: 'preview-section preview-video', key: index }, h('div', { className: 'preview-section-heading' }, h('h2', { 'data-key-path': base + 'title' }, val(block.title, 'Live from the Lounge')), h('p', { className: 'preview-muted', 'data-key-path': base + 'caption' }, val(block.caption, 'Live video preview'))), h('div', { className: 'preview-video-frame', style: image ? { backgroundImage: 'linear-gradient(#17131555,#17131555),url("' + image + '")' } : {} }, h('span', null, '▶'), h('small', null, val(block.provider, 'LIVE VIDEO').toUpperCase() + ' EMBED')));
+      return h('section', moduleProps(block, index, 'preview-section preview-video'), h('div', { className: 'preview-section-heading' }, h('h2', { 'data-key-path': base + 'title' }, val(block.title, 'Live from the Lounge')), h('p', { className: 'preview-muted', 'data-key-path': base + 'caption' }, val(block.caption, 'Live video preview'))), h('div', { className: 'preview-video-frame', style: image ? { backgroundImage: 'linear-gradient(#17131555,#17131555),url("' + image + '")' } : {} }, h('span', null, '▶'), h('small', null, val(block.provider, 'LIVE VIDEO').toUpperCase() + ' EMBED')));
     }
 
     if (type === 'google-map') {
       if (block.enabled === false) return null;
-      return h('section', { className: 'preview-section preview-map', key: index }, h('div', null, sectionTitle(block, index), h('h3', { 'data-key-path': base + 'placeName' }, val(block.placeName, 'The MB Lounge')), h('p', { 'data-key-path': base + 'address' }, val(block.address, data.visit && data.visit.address)), action(block.directionsLabel || 'Get directions', '#', 'preview-button')), h('div', { className: 'preview-map-art' }, h('span', null, '⌖'), h('small', null, 'GOOGLE MAP PREVIEW')));
+      return h('section', moduleProps(block, index, 'preview-section preview-map'), h('div', null, sectionTitle(block, index), h('h3', { 'data-key-path': base + 'placeName' }, val(block.placeName, 'The MB Lounge')), h('p', { 'data-key-path': base + 'address' }, val(block.address, data.visit && data.visit.address)), action(block.directionsLabel || 'Get directions', '#', 'preview-button')), h('div', { className: 'preview-map-art' }, h('span', null, '⌖'), h('small', null, 'GOOGLE MAP PREVIEW')));
     }
 
     if (type === 'promo-banner') {
-      return h('section', { className: 'preview-promo', key: index, style: image ? { backgroundImage: 'linear-gradient(90deg,#211a1df2,#211a1d88),url("' + image + '")' } : {} }, h('p', { className: 'preview-eyebrow', 'data-key-path': base + 'eyebrow' }, val(block.eyebrow)), h('h2', null, val(block.heading, 'Make it a night')), h('p', null, val(block.body)), action(block.action && block.action.label, block.action && block.action.url));
+      return h('section', moduleProps(block, index, 'preview-promo', image ? { backgroundImage: 'linear-gradient(90deg,color-mix(in srgb,var(--preview-module-background,var(--preview-ink)) 95%,transparent),color-mix(in srgb,var(--preview-module-background,var(--preview-ink)) 60%,transparent)),url("' + image + '")' } : {}), h('p', { className: 'preview-eyebrow', 'data-key-path': base + 'eyebrow' }, val(block.eyebrow)), h('h2', null, val(block.heading, 'Make it a night')), h('p', null, val(block.body)), action(block.action && block.action.label, block.action && block.action.url));
     }
 
-    if (type === 'rich-text') return h('section', { className: 'preview-section preview-rich', key: index }, sectionTitle(block, index), h('p', null, val(block.body, 'Rich text content')));
-    if (type === 'photo-gallery') return h('section', { className: 'preview-section', key: index }, sectionTitle(block, index), h('div', { className: 'preview-gallery' }, (block.images || []).slice(0, 4).map(function (record, imageIndex) { var src = imageUrl(record.image, getAsset); return src && h('img', { key: imageIndex, src: src, alt: record.altText || '' }); })));
+    if (type === 'rich-text') return h('section', moduleProps(block, index, 'preview-section preview-rich'), sectionTitle(block, index), h('p', null, val(block.body, 'Rich text content')));
+    if (type === 'photo-gallery') return h('section', moduleProps(block, index, 'preview-section'), sectionTitle(block, index), h('div', { className: 'preview-gallery' }, (block.images || []).slice(0, 4).map(function (record, imageIndex) { var src = imageUrl(record.image, getAsset); return src && h('img', { key: imageIndex, src: src, alt: record.altText || '' }); })));
     return null;
   }
 
@@ -152,7 +172,7 @@
           h('span', { className: 'preview-nav-cta' }, 'PLAN YOUR VISIT ↗')
         ),
         h('main', null, sections.map(function (block, index) { return renderSection(block, index, data, this.props.getAsset); }, this),
-          h('section', { className: 'preview-visit' }, h('div', null, h('small', null, val(data.visit && data.visit.addressLabel, 'COME ON IN')), h('strong', null, val(data.visit && data.visit.address, '40 Grafton Street')), h('span', null, val(data.visit && data.visit.cityLine, 'Worcester, MA'))), h('div', null, h('small', null, val(data.visit && data.visit.hoursLabel, 'THE LIGHTS ARE ON')), h('strong', null, val(data.visit && data.visit.daysOpen, 'Wednesday – Saturday')), h('span', null, val(data.visit && data.visit.openHours, '7 PM – 2 AM'))), h('div', null, h('small', null, val(data.visit && data.visit.phoneLabel, 'SAY HELLO')), h('strong', null, val(data.visit && data.visit.phone, '508-799-4521'))))
+          h('section', moduleProps(data.visit || {}, 'visit', 'preview-visit'), h('div', null, h('small', null, val(data.visit && data.visit.addressLabel, 'COME ON IN')), h('strong', null, val(data.visit && data.visit.address, '40 Grafton Street')), h('span', null, val(data.visit && data.visit.cityLine, 'Worcester, MA'))), h('div', null, h('small', null, val(data.visit && data.visit.hoursLabel, 'THE LIGHTS ARE ON')), h('strong', null, val(data.visit && data.visit.daysOpen, 'Wednesday – Saturday')), h('span', null, val(data.visit && data.visit.openHours, '7 PM – 2 AM'))), h('div', null, h('small', null, val(data.visit && data.visit.phoneLabel, 'SAY HELLO')), h('strong', null, val(data.visit && data.visit.phone, '508-799-4521'))))
         ),
         h('footer', { className: 'preview-footer' }, h('strong', null, val(data.siteName, 'The MB Lounge')), h('span', null, val(data.footer && data.footer.blurb, 'A neighborhood lounge for good nights and the people who make them.')), h('small', null, 'WORCESTER · MA · SINCE 1971'))
       );

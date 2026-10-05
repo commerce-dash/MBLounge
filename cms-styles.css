@@ -22,6 +22,9 @@ html[data-rounded=true] .event-card,html[data-rounded=true] .button,html[data-ro
 @media(max-width:640px){.cms-logo-ticker-section{padding:24px 0}.cms-logo-ticker-heading{padding:0 20px}.cms-logo-ticker-item{width:120px;height:55px}.cms-logo-ticker-item img{max-height:42px}}
 @media(prefers-reduced-motion:reduce){.cms-logo-ticker-track,.cms-logo-ticker-track.ticker-right,.cms-logo-ticker-track.ticker-float .cms-logo-ticker-item{animation:none!important;transform:none!important}.cms-logo-ticker-track .cms-logo-ticker-row:nth-child(2){display:none}}
 
+/* Optional per-section CMS background overrides. */
+.hero[style*="--cms-module-background"] .hero-shade{background:linear-gradient(90deg,var(--cms-module-background) 0%,var(--cms-module-background) 27%,color-mix(in srgb,var(--cms-module-background) 91%,transparent) 39%,rgba(33,26,29,.43) 66%,rgba(33,26,29,.2) 100%),linear-gradient(0deg,rgba(20,13,17,.56),transparent 32%)}
+.cms-promo-section[style*="--cms-module-background"]{background-color:var(--cms-module-background);background-image:linear-gradient(90deg,color-mix(in srgb,var(--cms-module-background) 95%,transparent),color-mix(in srgb,var(--cms-module-background) 60%,transparent)),var(--promo-image,none);background-position:center,center;background-size:cover,cover}
 /* Event actions remain clear and keyboard-visible on both card treatments. */
 .event-calendar-link{display:inline-flex;align-items:center;min-height:32px;margin-top:10px;color:#87415f;font-size:10px;font-weight:700;text-decoration:none;border-bottom:1px solid #d8bdca;padding:2px 0;transition:color .2s,border-color .2s}
 .event-calendar-link:hover{color:#b04d78;border-color:#b04d78}
