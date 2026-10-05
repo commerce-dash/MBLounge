@@ -1,0 +1,23 @@
+.cms-logo-ticker-section{padding:30px 7%;background:#fffdfa;color:#211a1d;border-top:1px solid #eee6e2;border-bottom:1px solid #eee6e2}
+.cms-logo-ticker-inner{max-width:1280px;margin:0 auto}
+.cms-logo-ticker-heading{margin:0 0 18px;text-align:center;font:600 10px/1.4 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:#8e8386}
+.cms-logo-ticker-viewport{overflow:hidden;outline-offset:4px;mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.cms-logo-ticker-track{display:flex;width:max-content;animation:logo-ticker-scroll var(--ticker-duration,34s) linear infinite;will-change:transform}
+.cms-logo-ticker-track.ticker-right{animation-name:logo-ticker-scroll-reverse}
+.cms-logo-ticker-viewport.pause-on-hover:hover .cms-logo-ticker-track,.cms-logo-ticker-viewport:focus-within .cms-logo-ticker-track{animation-play-state:paused}
+.cms-logo-ticker-row{display:flex;align-items:center;gap:var(--ticker-gap,48px);padding-right:var(--ticker-gap,48px)}
+.cms-logo-ticker-item{width:clamp(120px,15vw,190px);height:64px;display:grid;place-items:center;flex:0 0 auto;transition:transform .25s ease,opacity .25s ease;opacity:.78}
+.cms-logo-ticker-item:hover{transform:translateY(-3px);opacity:1}
+.cms-logo-ticker-item img{display:block;max-width:100%;max-height:50px;width:auto;height:auto;object-fit:contain;filter:grayscale(1);transition:filter .25s ease}
+.cms-logo-ticker-item:hover img{filter:grayscale(0)}
+.cms-logo-ticker-track.ticker-float .cms-logo-ticker-item:nth-child(even){animation:logo-ticker-float 3.8s ease-in-out infinite alternate}
+.cms-logo-ticker-track.ticker-static{animation:none;transform:none}
+.cms-logo-ticker-track.ticker-static .cms-logo-ticker-row:nth-child(2){display:none}
+.brand-logo{display:block;max-width:145px;max-height:46px;width:auto;height:auto;object-fit:contain}
+.brand-footer .brand-logo{max-height:42px}
+html[data-rounded=true] .event-card,html[data-rounded=true] .button,html[data-rounded=true] .cms-promo-section,html[data-rounded=true] .cms-partner-logo{border-radius:12px}
+@keyframes logo-ticker-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes logo-ticker-scroll-reverse{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+@keyframes logo-ticker-float{from{translate:0 2px}to{translate:0 -3px}}
+@media(max-width:640px){.cms-logo-ticker-section{padding:24px 0}.cms-logo-ticker-heading{padding:0 20px}.cms-logo-ticker-item{width:120px;height:55px}.cms-logo-ticker-item img{max-height:42px}}
+@media(prefers-reduced-motion:reduce){.cms-logo-ticker-track,.cms-logo-ticker-track.ticker-right,.cms-logo-ticker-track.ticker-float .cms-logo-ticker-item{animation:none!important;transform:none!important}.cms-logo-ticker-track .cms-logo-ticker-row:nth-child(2){display:none}}

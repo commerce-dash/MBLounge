@@ -19,7 +19,8 @@ const FONT_STACKS = {
   Arial: 'Arial, sans-serif',
   'system-ui': 'system-ui, sans-serif',
 };
-const CMS_ORIGIN = (window.MB_LOUNGE_CMS_URL || '').replace(/\/$/, '');
+const SITE_CONTENT_URL = 'content/site.json';
+const BASE_PATH = new URL('.', document.baseURI).pathname.replace(/\/$/, '');
 
 const menuToggle = document.querySelector('.menu-toggle');
 const primaryNav = document.querySelector('#primary-nav');
@@ -69,7 +70,9 @@ function assetUrl(value) {
   const url = typeof file === 'string' ? file : file?.url;
   if (!url) return '';
   if (/^https:\/\//i.test(url)) return url;
-  return CMS_ORIGIN ? `${CMS_ORIGIN}${url.startsWith('/') ? '' : '/'}${url}` : url;
+  if (/^https:\/\//i.test(url)) return url;
+  if (url.startsWith('/')) return url;
+  return `${BASE_PATH}/${url.replace(/^\.\//, '')}`;
 }
 
 function textOfBlocks(blocks) {
@@ -234,7 +237,7 @@ function updateEventCards(events, block) {
   const allEvents = section?.querySelector('.section-heading .text-link');
   if (allEvents && eventBlock.allEventsUrl) allEvents.href = eventBlock.allEventsUrl;
   const maximum = Math.max(1, Math.min(12, Number(eventBlock.maxEvents) || 3));
-  const items = events.map(recordValue).slice(0, maximum);
+  const items = events.map(recordValue).filter((event) => event.published !== false).slice(0, maximum);
   if (!items.length) {
     grid.replaceChildren();
     const empty = document.createElement('p');
@@ -460,6 +463,60 @@ function makeLogoGrid(input) {
   return section;
 }
 
+function makeLogoTicker(input) {
+  const block = recordValue(input);
+  if (block.enabled === false) return null;
+  const logos = (block.logos || []).map(recordValue).filter((entry) => assetUrl(entry.logo));
+  if (!logos.length) return null;
+  const section = makeSection('cms-logo-ticker-section');
+  const inner = document.createElement('div');
+  inner.className = 'cms-logo-ticker-inner';
+  if (block.heading) {
+    const heading = document.createElement('h2');
+    heading.className = 'cms-logo-ticker-heading';
+    heading.textContent = block.heading;
+    inner.append(heading);
+  }
+  const viewport = document.createElement('div');
+  viewport.className = `cms-logo-ticker-viewport${block.pauseOnHover === false ? '' : ' pause-on-hover'}`;
+  viewport.setAttribute('role', 'region');
+  viewport.setAttribute('aria-label', block.heading || 'MB Lounge community partners');
+  viewport.tabIndex = 0;
+  viewport.style.setProperty('--ticker-duration', `${Math.max(12, Math.min(120, Number(block.durationSeconds) || 34))}s`);
+  viewport.style.setProperty('--ticker-gap', `${Math.max(18, Math.min(96, Number(block.gapPixels) || 48))}px`);
+  const track = document.createElement('div');
+  track.className = `cms-logo-ticker-track${block.direction === 'right' ? ' ticker-right' : ''}${block.effect === 'float' ? ' ticker-float' : ''}`;
+  const createLogos = (duplicate = false) => {
+    const row = document.createElement('div');
+    row.className = 'cms-logo-ticker-row';
+    if (duplicate) row.setAttribute('aria-hidden', 'true');
+    logos.forEach((entry) => {
+      const src = assetUrl(entry.logo);
+      const item = entry.url ? document.createElement('a') : document.createElement('span');
+      item.className = 'cms-logo-ticker-item';
+      if (entry.url) {
+        item.href = entry.url;
+        if (entry.openInNewTab !== false) { item.target = '_blank'; item.rel = 'noopener noreferrer'; }
+      }
+      if (entry.name) item.setAttribute('aria-label', entry.name);
+      const image = document.createElement('img');
+      image.src = src;
+      image.alt = duplicate ? '' : (entry.altText || entry.name || '');
+      image.loading = 'lazy';
+      image.decoding = 'async';
+      item.append(image);
+      row.append(item);
+    });
+    return row;
+  };
+  track.append(createLogos(), createLogos(true));
+  viewport.append(track);
+  inner.append(viewport);
+  section.append(inner);
+  if (block.animation === false || window.matchMedia('(prefers-reduced-motion: reduce)').matches) track.classList.add('ticker-static');
+  return section;
+}
+
 function applyHero(block) {
   const section = document.querySelector('.hero');
   const eyebrow = recordValue(block);
@@ -520,17 +577,26 @@ function applyCommunity(block) {
 }
 
 function generatedBlock(block, events) {
-  const type = block.__component;
-  if (type === 'sections.live-video') return makeLiveVideo(block);
-  if (type === 'sections.promo-banner') return makePromo(block);
-  if (type === 'sections.rich-text') return makeRichText(block);
-  if (type === 'sections.photo-gallery') return makeGallery(block);
-  if (type === 'sections.logo-grid') return makeLogoGrid(block);
-  if (type === 'sections.event-list') updateEventCards(events, block);
-  if (type === 'sections.hero') applyHero(block);
-  if (type === 'sections.story') applyStory(block);
-  if (type === 'sections.private-events') applyPrivateEvents(block);
-  if (type === 'sections.community') applyCommunity(block);
+  const type = block.type || block.__component;
+  const aliases = {
+    hero: 'sections.hero', 'event-list': 'sections.event-list', story: 'sections.story',
+    'private-events': 'sections.private-events', community: 'sections.community',
+    'live-video': 'sections.live-video', 'promo-banner': 'sections.promo-banner',
+    'rich-text': 'sections.rich-text', 'photo-gallery': 'sections.photo-gallery',
+    'logo-grid': 'sections.logo-grid', 'logo-ticker': 'sections.logo-ticker',
+  };
+  const resolved = aliases[type] || type;
+  if (resolved === 'sections.live-video') return makeLiveVideo(block);
+  if (resolved === 'sections.promo-banner') return makePromo(block);
+  if (resolved === 'sections.rich-text') return makeRichText(block);
+  if (resolved === 'sections.photo-gallery') return makeGallery(block);
+  if (resolved === 'sections.logo-grid') return makeLogoGrid(block);
+  if (resolved === 'sections.logo-ticker') return makeLogoTicker(block);
+  if (resolved === 'sections.event-list') updateEventCards(events, block);
+  if (resolved === 'sections.hero') applyHero(block);
+  if (resolved === 'sections.story') applyStory(block);
+  if (resolved === 'sections.private-events') applyPrivateEvents(block);
+  if (resolved === 'sections.community') applyCommunity(block);
   const selectors = {
     'sections.hero': '#home',
     'sections.event-list': '#events',
@@ -538,7 +604,7 @@ function generatedBlock(block, events) {
     'sections.private-events': '#private-events',
     'sections.community': '#community',
   };
-  return selectors[type] ? document.querySelector(selectors[type]) : null;
+  return selectors[resolved] ? document.querySelector(selectors[resolved]) : null;
 }
 
 function applyHomepage(input, events) {
@@ -578,12 +644,10 @@ function applyFallbackVideo() {
 async function loadCMS() {
   applySlides(DEFAULT_SLIDES, 5000, 500, 'fade');
   applyFallbackVideo();
-  if (!CMS_ORIGIN) return;
   try {
-    const response = await fetch(`${CMS_ORIGIN}/api/public/site`, { headers: { Accept: 'application/json' } });
-    if (!response.ok) throw new Error(`CMS returned ${response.status}`);
-    const body = await response.json();
-    const data = recordValue(body.data || body);
+    const response = await fetch(`${SITE_CONTENT_URL}?v=1`, { headers: { Accept: 'application/json' } });
+    if (!response.ok) throw new Error(`Site content returned ${response.status}`);
+    const data = await response.json();
     if (data.settings) applySettings(data.settings);
     const events = Array.isArray(data.events) ? data.events.map(recordValue) : [];
     if (data.homepage) {
@@ -591,7 +655,7 @@ async function loadCMS() {
       applyHomepage(data.homepage, events);
     }
   } catch (error) {
-    console.info('MB Lounge CMS is not connected; showing the built-in preview content.', error);
+    console.info('MB Lounge content file is not available; showing the built-in preview content.', error);
   }
 }
 
