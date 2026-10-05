@@ -19,7 +19,7 @@ const FONT_STACKS = {
   Arial: 'Arial, sans-serif',
   'system-ui': 'system-ui, sans-serif',
 };
-const SITE_CONTENT_URL = 'content/site.json?v=2';
+const SITE_CONTENT_URL = 'content/site.json?v=3';
 const BASE_PATH = new URL('.', document.baseURI).pathname.replace(/\/$/, '');
 
 const menuToggle = document.querySelector('.menu-toggle');
@@ -284,7 +284,11 @@ function updateEventCards(events, block) {
   const allEvents = section?.querySelector('.section-heading .text-link');
   if (allEvents && eventBlock.allEventsUrl) allEvents.href = eventBlock.allEventsUrl;
   const maximum = Math.max(1, Math.min(12, Number(eventBlock.maxEvents) || 3));
-  const items = events.map(recordValue).filter((event) => event.published !== false).slice(0, maximum);
+  const items = events.map(recordValue).filter((event) => {
+    if (event.published === false) return false;
+    const startsAt = new Date(event.startsAt);
+    return Number.isNaN(startsAt.getTime()) || startsAt.getTime() >= Date.now();
+  }).slice(0, maximum);
   if (!items.length) {
     grid.replaceChildren();
     const empty = document.createElement('p');
