@@ -1,8 +1,8 @@
 const DEFAULT_SLIDES = [
-  { imageUrl: 'https://www.themblounge.com/wp-content/uploads/2024/08/DSC_0553-scaled.jpg', altText: 'Guests enjoying a night at MB Lounge' },
-  { imageUrl: 'https://www.themblounge.com/wp-content/uploads/2024/08/DSC_0605-scaled.jpg', altText: 'A lively evening at the Lounge' },
-  { imageUrl: 'https://www.themblounge.com/wp-content/uploads/2024/08/DSC_0539-scaled.jpg', altText: 'The MB Lounge dance floor' },
-  { imageUrl: 'https://www.themblounge.com/wp-content/uploads/2024/08/DSC_0592-scaled.jpg', altText: 'Friends gathered at MB Lounge' },
+  { imageUrl: 'assets/lounge/mb-lounge-dance-floor.jpg', altText: 'The MB Lounge dance floor lit in blue and green' },
+  { imageUrl: 'assets/lounge/mb-lounge-bar-wide.jpg', altText: 'The colorful Worcester skyline mural inside MB Lounge' },
+  { imageUrl: 'assets/lounge/mb-lounge-bar-taps.jpg', altText: 'Rainbow flags and taps behind the MB Lounge bar' },
+  { imageUrl: 'assets/lounge/mb-lounge-lights.jpg', altText: 'Colorful stage lights across the MB Lounge dance floor' },
 ];
 const DEFAULT_LIVE_VIDEO = {
   enabled: true,
