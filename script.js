@@ -699,7 +699,7 @@ async function loadCMS() {
     const response = await fetch(SITE_CONTENT_URL, { headers: { Accept: 'application/json' } });
     if (!response.ok) throw new Error(`Site content returned ${response.status}`);
     const data = await response.json();
-    if (data.settings) applySettings(data.settings);
+    applySettings(data.settings || data);
     const events = Array.isArray(data.events) ? data.events.map(recordValue) : [];
     if (data.homepage) {
       document.querySelector('[data-cms-generated="true"]')?.remove();
