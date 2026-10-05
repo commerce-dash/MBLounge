@@ -152,7 +152,7 @@
         "type": "live-video",
         "enabled": true,
         "title": "Live from the Lounge",
-        "caption": "A live look inside MB Lounge. 21+ only.",
+        "caption": "A live look inside MB Lounge.",
         "provider": "rtsp-me",
         "embedUrl": "https://rtsp.me/embed/t9e9hkrN/",
         "poster": "",
