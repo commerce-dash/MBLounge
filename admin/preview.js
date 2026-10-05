@@ -60,19 +60,21 @@
     }
 
     if (type === 'event-list') {
-      var events = (data.events || []).filter(function (event) { return event.published !== false; }).slice(0, Number(block.maxEvents) || 3);
+      var events = (data.events || []).filter(function (event) { return event.published !== false && event.startsAt && !isNaN(new Date(event.startsAt)) && new Date(event.startsAt).getTime() >= Date.now(); }).sort(function (a, b) { return new Date(a.startsAt) - new Date(b.startsAt); }).slice(0, Number(block.maxEvents) || 3);
       return h('section', { className: 'preview-section preview-events', key: index },
         h('div', { className: 'preview-section-heading' }, sectionTitle(block, index), action('All events', block.allEventsUrl, 'preview-text-link')),
         block.intro && h('p', { className: 'preview-muted' }, block.intro),
         h('div', { className: 'preview-event-grid' }, events.length ? events.map(function (event, eventIndex) {
           var date = event.startsAt ? new Date(event.startsAt) : null;
           var dateLabel = date && !isNaN(date) ? date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : 'UPCOMING';
-          return h('article', { className: 'preview-event-card', key: eventIndex },
+          var timeLabel = date && !isNaN(date) ? date.toLocaleDateString('en-US', { weekday:'long', month:'short', day:'numeric' }) + ' · ' + date.toLocaleTimeString('en-US', { hour:'numeric', minute:'2-digit' }) : '';
+          return h('article', { className: 'preview-event-card' + (event.featured ? ' preview-event-featured' : ''), key: eventIndex },
             h('span', { className: 'preview-event-date' }, dateLabel),
             h('small', null, val(event.eventType, 'SPECIAL EVENT')),
             h('h3', null, val(event.title, 'Event title')),
             h('p', null, val(event.summary, 'Event details will appear here.')),
-            event.priceLabel && h('span', { className: 'preview-pill' }, event.priceLabel)
+            h('span', { className: 'preview-event-time' }, timeLabel + (event.priceLabel ? ' · ' + event.priceLabel : '')),
+            h('span', { className: 'preview-calendar-link' }, 'Add to Google Calendar ↗')
           );
         }) : h('div', { className: 'preview-event-card' }, 'Upcoming events will appear here once added in the CMS.'))
       );

@@ -21,3 +21,11 @@ html[data-rounded=true] .event-card,html[data-rounded=true] .button,html[data-ro
 @keyframes logo-ticker-float{from{translate:0 2px}to{translate:0 -3px}}
 @media(max-width:640px){.cms-logo-ticker-section{padding:24px 0}.cms-logo-ticker-heading{padding:0 20px}.cms-logo-ticker-item{width:120px;height:55px}.cms-logo-ticker-item img{max-height:42px}}
 @media(prefers-reduced-motion:reduce){.cms-logo-ticker-track,.cms-logo-ticker-track.ticker-right,.cms-logo-ticker-track.ticker-float .cms-logo-ticker-item{animation:none!important;transform:none!important}.cms-logo-ticker-track .cms-logo-ticker-row:nth-child(2){display:none}}
+
+/* Event actions remain clear and keyboard-visible on both card treatments. */
+.event-calendar-link{display:inline-flex;align-items:center;min-height:32px;margin-top:10px;color:#87415f;font-size:10px;font-weight:700;text-decoration:none;border-bottom:1px solid #d8bdca;padding:2px 0;transition:color .2s,border-color .2s}
+.event-calendar-link:hover{color:#b04d78;border-color:#b04d78}
+.event-card-featured .event-calendar-link{color:#f0a3c1;border-color:#8f7180}
+.event-card-featured .event-calendar-link:hover{color:#fff;border-color:#fff}
+.event-calendar-link:focus-visible{outline:2px solid #5688f7;outline-offset:3px;border-radius:2px}
+@media(max-width:640px){.event-calendar-link{font-size:11px;min-height:36px;margin-top:7px}}

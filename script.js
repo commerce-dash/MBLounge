@@ -285,10 +285,9 @@ function updateEventCards(events, block) {
   if (allEvents && eventBlock.allEventsUrl) allEvents.href = eventBlock.allEventsUrl;
   const maximum = Math.max(1, Math.min(12, Number(eventBlock.maxEvents) || 3));
   const items = events.map(recordValue).filter((event) => {
-    if (event.published === false) return false;
     const startsAt = new Date(event.startsAt);
-    return Number.isNaN(startsAt.getTime()) || startsAt.getTime() >= Date.now();
-  }).slice(0, maximum);
+    return event.published !== false && !Number.isNaN(startsAt.getTime()) && startsAt.getTime() >= Date.now();
+  }).sort((a, b) => new Date(a.startsAt) - new Date(b.startsAt)).slice(0, maximum);
   if (!items.length) {
     grid.replaceChildren();
     const empty = document.createElement('p');
@@ -320,8 +319,21 @@ function updateEventCards(events, block) {
     summary.textContent = event.summary || '';
     const timing = document.createElement('span');
     timing.className = 'event-time';
-    timing.textContent = `${Number.isNaN(date.getTime()) ? '' : new Intl.DateTimeFormat('en-US', { weekday: 'long', hour: 'numeric', minute: '2-digit' }).format(date)}${event.priceLabel ? ` · ${event.priceLabel}` : ''}`;
+    timing.textContent = `${new Intl.DateTimeFormat('en-US', { weekday: 'long', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }).format(date)}${event.priceLabel ? ` · ${event.priceLabel}` : ''}`;
     copy.append(type, title, summary, timing);
+    const calendar = document.createElement('a');
+    calendar.className = 'event-calendar-link';
+    calendar.target = '_blank';
+    calendar.rel = 'noopener noreferrer';
+    calendar.textContent = 'Add to Google Calendar ↗';
+    const requestedEnd = event.endsAt ? new Date(event.endsAt) : null;
+    const endDate = requestedEnd && !Number.isNaN(requestedEnd.getTime()) && requestedEnd > date
+      ? requestedEnd
+      : new Date(date.getTime() + 2 * 60 * 60 * 1000);
+    const asCalendarTime = (value) => value.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}Z$/, 'Z');
+    const dates = `${asCalendarTime(date)}/${asCalendarTime(endDate)}`;
+    calendar.href = `https://calendar.google.com/calendar/render?${new URLSearchParams({ action: 'TEMPLATE', text: event.title || 'MB Lounge event', dates, details: [event.summary || '', event.ticketUrl || ''].filter(Boolean).join('\n\n'), location: 'MB Lounge, 40 Grafton Street, Worcester, MA 01604' })}`;
+    copy.append(calendar);
     const arrow = document.createElement('a');
     arrow.className = 'event-arrow';
     arrow.href = event.ticketUrl || block?.allEventsUrl || 'https://www.facebook.com/MBLoungeWorcester/events';

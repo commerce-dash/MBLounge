@@ -40,6 +40,11 @@ body { margin: 0; color: #211a1d; font-family: 'DM Sans', Arial, sans-serif; -we
 .preview-event-card h3 { margin:10px 0 7px; font-size:16px; line-height:1.15; }
 .preview-event-card p { color:#786d71; font-size:9px; }
 .preview-pill { display:inline-block; padding:3px 8px; border-radius:20px; color:#704259; background:#f8e7ee; font-size:8px; }
+.preview-event-featured { background:#30242b; color:#fff; border-color:#30242b; }
+.preview-event-featured p,.preview-event-featured .preview-event-time { color:#d4c5cc; }
+.preview-event-time { display:block; margin-top:8px; color:#76686e; font-size:8px; }
+.preview-calendar-link { display:inline-block; margin-top:10px; padding-bottom:3px; border-bottom:1px solid #d8bdca; color:#87415f; font-size:9px; font-weight:700; }
+.preview-event-featured .preview-calendar-link { color:#f0a3c1; border-color:#8f7180; }
 .preview-split { display:grid; grid-template-columns:1fr 1fr; gap:8%; align-items:center; background:var(--preview-surface); }
 .preview-split-image { min-height:260px; background:#211a1d center/cover; }
 .preview-split-image img { width:100%; height:100%; min-height:260px; object-fit:cover; }
