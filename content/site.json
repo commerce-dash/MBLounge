@@ -210,7 +210,7 @@
       },
       {
         "type": "logo-ticker",
-        "fontColor": "",
+        "fontColor": "#fafafa",
         "heading": "MB Lounge community partners",
         "backgroundColor": "#000000",
         "enabled": true,
