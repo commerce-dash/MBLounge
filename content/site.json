@@ -123,15 +123,7 @@
         },
         "slides": [
           {
-            "image": "assets/lounge/mb-lounge-dance-floor.jpg",
-            "altText": "The MB Lounge dance floor lit in blue and green"
-          },
-          {
-            "image": "assets/lounge/mb-lounge-bar-wide.jpg",
-            "altText": "The colorful Worcester skyline mural inside MB Lounge"
-          },
-          {
-            "image": "assets/lounge/mb-lounge-bar-taps.jpg",
+            "image": "/MBLounge/assets/uploads/club.png",
             "altText": "Rainbow flags and taps behind the MB Lounge bar"
           },
           {
