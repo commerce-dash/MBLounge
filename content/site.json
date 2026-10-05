@@ -31,6 +31,29 @@
     { "label": "Community", "url": "#community", "openInNewTab": false },
     { "label": "Find us", "url": "#visit", "openInNewTab": false }
   ],
+  "visit": {
+    "addressLabel": "COME ON IN",
+    "address": "40 Grafton Street",
+    "cityLine": "Worcester, MA 01604",
+    "directionsLabel": "Get directions ↗",
+    "directionsUrl": "https://maps.google.com/?q=40+Grafton+Street,+Worcester,+MA",
+    "hoursLabel": "THE LIGHTS ARE ON",
+    "daysOpen": "Wednesday – Saturday",
+    "openHours": "7 PM – 2 AM",
+    "phoneLabel": "SAY HELLO",
+    "phone": "508-799-4521",
+    "parkingNote": "Across-street public parking"
+  },
+  "footer": {
+    "blurb": "A neighborhood lounge for good nights and the people who make them.",
+    "address": "40 Grafton Street",
+    "cityLine": "Worcester, MA 01604",
+    "addressUrl": "https://maps.google.com/?q=40+Grafton+Street,+Worcester,+MA",
+    "phone": "508-799-4521",
+    "instagramUrl": "https://www.instagram.com/mb.lounge1/",
+    "facebookUrl": "https://www.facebook.com/MBLoungeWorcester/",
+    "email": "mblounge1@gmail.com"
+  },
   "events": [],
   "homepage": {
     "seo": {
