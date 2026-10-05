@@ -75,30 +75,6 @@
     "facebookUrl": "https://www.facebook.com/MBLoungeWorcester/",
     "email": "mblounge1@gmail.com"
   },
-  "events": [
-    {
-      "title": "JOINT OPERATIONS PRESENTS: HALLOWEEN PARTY AT MB LOUNGE!",
-      "startsAt": "2026-10-30T21:30:00-04:00",
-      "endsAt": "",
-      "eventType": "Halloween party",
-      "summary": "Halloween party at MB Lounge.",
-      "priceLabel": "21+",
-      "ticketUrl": "https://www.facebook.com/MBLoungeWorcester/events",
-      "featured": true,
-      "published": true
-    },
-    {
-      "title": "MB LOUNGE’S ANNUAL HALLOWEEN PARTY & COSTUME CONTEST!",
-      "startsAt": "2026-10-31T21:00:00-04:00",
-      "endsAt": "",
-      "eventType": "Costume contest",
-      "summary": "MB Lounge, 40 Grafton Street, Worcester. Join the annual Halloween party and costume contest.",
-      "priceLabel": "21+",
-      "ticketUrl": "https://www.facebook.com/MBLoungeWorcester/events",
-      "featured": false,
-      "published": true
-    }
-  ],
   "homepage": {
     "seo": {
       "title": "MB Lounge — Worcester, MA",
@@ -241,6 +217,48 @@
             "url": "#",
             "altText": "Michelle May Logo",
             "openInNewTab": true
+          },
+          {
+            "name": "Unibank",
+            "logo": "/MBLounge/assets/uploads/partners/unibank.webp",
+            "url": "#",
+            "altText": "Unibank Logo",
+            "openInNewTab": true
+          },
+          {
+            "name": "Cosmic Unicornz",
+            "logo": "/MBLounge/assets/uploads/partners/cosmic-unicorn.webp",
+            "url": "#",
+            "altText": "Cosmic Unicornz Logo",
+            "openInNewTab": true
+          },
+          {
+            "name": "Woo Sex",
+            "logo": "/MBLounge/assets/uploads/partners/woosex.webp",
+            "url": "#",
+            "altText": "Woo Sex Logo",
+            "openInNewTab": true
+          },
+          {
+            "name": "KB Designs",
+            "logo": "/MBLounge/assets/uploads/partners/KBDesigns.webp",
+            "url": "#",
+            "altText": "KB Designs Logo",
+            "openInNewTab": true
+          },
+          {
+            "name": "RSM Electric",
+            "logo": "/MBLounge/assets/uploads/partners/rsm.webp",
+            "url": "#",
+            "altText": "RSM Electric",
+            "openInNewTab": true
+          },
+          {
+            "name": "iLah",
+            "logo": "/MBLounge/assets/uploads/partners/ilah.webp",
+            "url": "#",
+            "altText": "iLah Logo",
+            "openInNewTab": true
           }
         ],
         "animation": true,
@@ -251,5 +269,29 @@
         "pauseOnHover": true
       }
     ]
-  }
+  },
+  "events": [
+    {
+      "endsAt": "",
+      "eventType": "Halloween party",
+      "featured": true,
+      "priceLabel": "21+",
+      "published": true,
+      "startsAt": "2026-10-30T21:30:00-04:00",
+      "summary": "Halloween party at MB Lounge.",
+      "ticketUrl": "https://www.facebook.com/MBLoungeWorcester/events",
+      "title": "JOINT OPERATIONS PRESENTS: HALLOWEEN PARTY AT MB LOUNGE!"
+    },
+    {
+      "endsAt": "",
+      "eventType": "Costume contest",
+      "featured": false,
+      "priceLabel": "21+",
+      "published": true,
+      "startsAt": "2026-10-31T21:00:00-04:00",
+      "summary": "MB Lounge, 40 Grafton Street, Worcester. Join the annual Halloween party and costume contest.",
+      "ticketUrl": "https://www.facebook.com/MBLoungeWorcester/events",
+      "title": "MB LOUNGE’S ANNUAL HALLOWEEN PARTY & COSTUME CONTEST!"
+    }
+  ]
 }
